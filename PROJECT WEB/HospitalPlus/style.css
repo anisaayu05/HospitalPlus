@@ -1,0 +1,368 @@
+/* General Body and Typography */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212;
+    color: #eaeaea;
+}
+
+h1, h2, h3 {
+    font-weight: 600;
+    color: #f0f0f0;
+}
+
+p {
+    font-weight: 300;
+    color: #b0b0b0;
+}
+
+/* Header Styling */
+header {
+    background-color: #0f3460;
+    color: white;
+    padding: 10px 0;
+}
+
+header .logo h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    color: #eaeaea;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+header nav ul li {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+header nav ul li a {
+    color: #eaeaea;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+header nav ul li a:hover, header nav ul li a.active {
+    color: #00a8cc;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, #1f1f1f, #2c2c2c);
+    color: white;
+    padding: 60px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+}
+
+.hero-content {
+    max-width: 50%;
+}
+
+.hero-content h1 {
+    font-size: 2.5rem;
+    line-height: 1.3; 
+}
+
+.hero-content p {
+    font-size: 1.1rem; 
+    line-height: 1.6; 
+    margin-bottom: 20px; 
+}
+
+.hero-image {
+    flex: 1; 
+    display: flex;
+    justify-content: flex-end; 
+}
+
+.hero-image img {
+    max-width: 100%; 
+    height: auto; 
+    border-radius: 10px;
+}
+
+.hero-section .btn {
+    font-size: 1rem;
+    padding: 10px 30px;
+    background-color: #00a8cc;
+    color: white;
+    border: none;
+    font-weight: 600;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.hero-section .btn:hover {
+    background-color: #007bff;
+    transform: scale(1.05);
+}
+
+/* Section Backgrounds */
+section {
+    background-color: #1f1f1f;
+    padding: 60px 0;
+}
+
+section:nth-child(even) {
+    background-color: #1f1f1f; 
+}
+
+/* Features and Card Styling */
+.feature-card {
+    background-color: #222831;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    text-align: center;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: #eaeaea;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+.feature-card i {
+    color: #00a8cc;
+    font-size: 3rem;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover i {
+    transform: scale(1.2);
+}
+
+.feature-card h3 {
+    font-size: 1.25rem;
+    margin-top: 15px;
+    color: #f0f0f0;
+}
+
+.feature-card p {
+    font-size: 1rem;
+    color: #b0b0b0;
+}
+
+/* Departments Section */
+.department-card {
+    background-color: #222831;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    color: #eaeaea;
+}
+
+.department-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+.department-card h3 {
+    font-size: 1.25rem;
+    margin-top: 15px;
+    color: #f0f0f0;
+}
+
+.department-card p {
+    font-size: 1rem;
+    color: #b0b0b0;
+}
+
+/* Contact Form Styling */
+#contact-form input, #contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #1a1a2e;
+    color: #eaeaea;
+}
+
+#contact-form input::placeholder, #contact-form textarea::placeholder {
+    color: #888;
+}
+
+#contact-form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #00a8cc;
+    color: white;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#contact-form button:hover {
+    background-color: #007bff;
+    transform: scale(1.05);
+}
+
+/* Footer Styling */
+footer {
+    background-color: #1a252f;
+    color: white;
+    padding: 30px 0;
+}
+
+.footer-logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+footer a {
+    color: #d1ddf1;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #03ACF2;
+}
+
+footer hr {
+    border-top: 1px solid #555;
+    margin: 20px 0;
+}
+
+footer .list-unstyled li {
+    margin-bottom: 10px;
+}
+
+footer .list-unstyled a {
+    font-size: 14px;
+}
+
+footer .d-flex a {
+    font-size: 18px;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    footer .row {
+        text-align: center;
+    }
+
+    footer .d-flex {
+        justify-content: center;
+    }
+}
+
+/* Additional Styling for CRUD Pages */
+
+/* Form styling for CRUD pages */
+form {
+    background-color: #1f1f1f;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 30px;
+}
+
+form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+form input,
+form textarea,
+form select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #555;
+    font-size: 1rem;
+    background-color: #222831;
+    color: #eaeaea;
+}
+
+form label {
+    color: #f0f0f0; 
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+}
+
+form .form-group label {
+    color: #eaeaea;
+}
+
+form h2, form h3 {
+    color: #ffffff;
+}
+
+form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #00a8cc;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #007bff;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #1a1a2e;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    color: #eaeaea;
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #333;
+}
+
+table th {
+    background-color: #222831; 
+    font-weight: 600;
+    color: #ffffff;
+}
+
+table td {
+    background-color: #2a2a3d;
+    color: #eaeaea;
+}
+
+table td button {
+    margin: 5px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+table td button.btn-warning {
+    background-color: #ffc107;
+}
+
+table td button.btn-danger {
+    background-color: #dc3545;
+}
+
+table td button:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
