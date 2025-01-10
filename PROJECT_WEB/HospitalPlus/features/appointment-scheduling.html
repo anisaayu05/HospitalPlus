@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Scheduling - HospitalPlus</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <header class="bg-dark text-white py-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="logo">
+                <h1>HospitalPlus</h1>
+            </div>
+        </div>
+    </header>
+
+    <section id="appointment-scheduling" class="py-5">
+        <div class="container">
+            <h2 class="text-center">Appointment Scheduling</h2>
+
+            <!-- Form untuk Create dan Update Appointment -->
+            <form id="appointment-form" method="POST">
+                <input type="hidden" id="appointment-id">
+                <div class="form-group">
+                    <label for="patient-name">Patient Name</label>
+                    <input type="text" class="form-control" id="patient-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="doctor-select">Select Doctor</label>
+                    <select class="form-control" id="doctor-select" required>
+                        <option value="dr-john">Dr. John Doe</option>
+                        <option value="dr-jane">Dr. Jane Smith</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="appointment-date">Select Date</label>
+                    <input type="date" class="form-control" id="appointment-date" required>
+                </div>
+                <div class="form-group">
+                    <label for="appointment-time">Select Time</label>
+                    <input type="time" class="form-control" id="appointment-time" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Save Appointment</button>
+            </form>
+
+            <!-- Daftar Appointment -->
+            <h3 class="mt-5">Scheduled Appointments</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Patient Name</th>
+                        <th>Doctor</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="appointment-list">
+                    <!-- Data appointments akan ditampilkan di sini -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-white pt-5 pb-4">
+        <div class="container text-center">
+            &copy; 2024 HospitalPlus | All Rights Reserved
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        let appointments = [];  // Data appointments dalam memori (untuk demo)
+
+        // Fungsi untuk menampilkan daftar appointments
+        function renderAppointments() {
+            const list = document.getElementById('appointment-list');
+            list.innerHTML = '';
+            appointments.forEach((appointment, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${appointment.patientName}</td>
+                    <td>${appointment.doctor}</td>
+                    <td>${appointment.date}</td>
+                    <td>${appointment.time}</td>
+                    <td>
+                        <button class="btn btn-warning" onclick="editAppointment(${index})">Edit</button>
+                        <button class="btn btn-danger" onclick="deleteAppointment(${index})">Delete</button>
+                    </td>
+                `;
+                list.appendChild(row);
+            });
+        }
+
+        // Fungsi untuk menambah appointment
+        function createAppointment(event) {
+            event.preventDefault();
+            const patientName = document.getElementById('patient-name').value;
+            const doctor = document.getElementById('doctor-select').value;
+            const date = document.getElementById('appointment-date').value;
+            const time = document.getElementById('appointment-time').value;
+
+            // Jika ada ID appointment, maka ini adalah update
+            const appointmentId = document.getElementById('appointment-id').value;
+            if (appointmentId) {
+                appointments[appointmentId] = { patientName, doctor, date, time };
+            } else {
+                appointments.push({ patientName, doctor, date, time });
+            }
+            renderAppointments();
+            resetForm();
+        }
+
+        // Fungsi untuk mengedit appointment
+        function editAppointment(index) {
+            const appointment = appointments[index];
+            document.getElementById('patient-name').value = appointment.patientName;
+            document.getElementById('doctor-select').value = appointment.doctor;
+            document.getElementById('appointment-date').value = appointment.date;
+            document.getElementById('appointment-time').value = appointment.time;
+            document.getElementById('appointment-id').value = index;
+        }
+
+        // Fungsi untuk menghapus appointment
+        function deleteAppointment(index) {
+            appointments.splice(index, 1);
+            renderAppointments();
+        }
+
+        // Fungsi untuk mereset form
+        function resetForm() {
+            document.getElementById('appointment-form').reset();
+            document.getElementById('appointment-id').value = '';
+        }
+
+        // Menangani form submission
+        document.getElementById('appointment-form').addEventListener('submit', createAppointment);
+
+        // Render daftar appointment awal
+        renderAppointments();
+    </script>
+</body>
+</html>
