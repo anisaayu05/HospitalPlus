@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Allocation - HospitalPlus</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <header class="bg-dark text-white py-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="logo">
+                <h1>HospitalPlus</h1>
+            </div>
+        </div>
+    </header>
+
+    <section id="room-allocation" class="py-5">
+        <div class="container">
+            <h2 class="text-center">Room Allocation</h2>
+
+            <!-- Form untuk Create dan Update Room -->
+            <form id="room-form" method="POST">
+                <input type="hidden" id="room-id">
+                <div class="form-group">
+                    <label for="room-name">Room Name</label>
+                    <input type="text" class="form-control" id="room-name" placeholder="Enter Room Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="room-type">Room Type</label>
+                    <select class="form-control" id="room-type" required>
+                        <option value="ICU">ICU</option>
+                        <option value="Operation Theatre">Operation Theatre</option>
+                        <option value="General Ward">General Ward</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="room-capacity">Capacity</label>
+                    <input type="number" class="form-control" id="room-capacity" placeholder="Enter Capacity" required>
+                </div>
+                <div class="form-group">
+                    <label for="room-status">Status</label>
+                    <select class="form-control" id="room-status" required>
+                        <option value="available">Available</option>
+                        <option value="occupied">Occupied</option>
+                        <option value="maintenance">Maintenance</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="room-notes">Notes</label>
+                    <textarea class="form-control" id="room-notes" rows="3" placeholder="Enter any additional notes (optional)"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Save Room</button>
+            </form>
+
+            <!-- Daftar Rooms -->
+            <h3 class="mt-5">Room List</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Room Name</th>
+                        <th>Type</th>
+                        <th>Capacity</th>
+                        <th>Status</th>
+                        <th>Notes</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="room-list">
+                    <!-- Data rooms akan ditampilkan di sini -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-white pt-5 pb-4">
+        <div class="container text-center">
+            &copy; 2024 HospitalPlus | All Rights Reserved
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        let rooms = []; // Data rooms dalam memori (untuk demo)
+
+        // Fungsi untuk menampilkan daftar rooms
+        function renderRooms() {
+            const list = document.getElementById('room-list');
+            list.innerHTML = '';
+            rooms.forEach((room, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${room.name}</td>
+                    <td>${room.type}</td>
+                    <td>${room.capacity}</td>
+                    <td>${room.status}</td>
+                    <td>${room.notes || 'No Notes'}</td>
+                    <td>
+                        <button class="btn btn-warning" onclick="editRoom(${index})">Edit</button>
+                        <button class="btn btn-danger" onclick="deleteRoom(${index})">Delete</button>
+                    </td>
+                `;
+                list.appendChild(row);
+            });
+        }
+
+        // Fungsi untuk menambah atau memperbarui room
+        function createRoom(event) {
+            event.preventDefault();
+            const name = document.getElementById('room-name').value;
+            const type = document.getElementById('room-type').value;
+            const capacity = document.getElementById('room-capacity').value;
+            const status = document.getElementById('room-status').value;
+            const notes = document.getElementById('room-notes').value;
+
+            const roomId = document.getElementById('room-id').value;
+            if (roomId) {
+                rooms[roomId] = { name, type, capacity, status, notes };
+            } else {
+                rooms.push({ name, type, capacity, status, notes });
+            }
+            renderRooms();
+            resetForm();
+        }
+
+        // Fungsi untuk mengedit room
+        function editRoom(index) {
+            const room = rooms[index];
+            document.getElementById('room-name').value = room.name;
+            document.getElementById('room-type').value = room.type;
+            document.getElementById('room-capacity').value = room.capacity;
+            document.getElementById('room-status').value = room.status;
+            document.getElementById('room-notes').value = room.notes;
+            document.getElementById('room-id').value = index;
+        }
+
+        // Fungsi untuk menghapus room
+        function deleteRoom(index) {
+            rooms.splice(index, 1);
+            renderRooms();
+        }
+
+        // Fungsi untuk mereset form
+        function resetForm() {
+            document.getElementById('room-form').reset();
+            document.getElementById('room-id').value = '';
+        }
+
+        // Menangani form submission
+        document.getElementById('room-form').addEventListener('submit', createRoom);
+
+        // Render daftar room awal
+        renderRooms();
+    </script>
+</body>
+</html>

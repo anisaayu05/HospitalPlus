@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HospitalPlus</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Add Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-dark text-white py-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="logo">
+                <h1>HospitalPlus</h1>
+            </div>
+            <nav>
+                <ul class="nav">
+                    <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
+                    <li class="nav-item"><a href="#features" class="nav-link">Features</a></li>
+                    <li class="nav-item"><a href="#departments" class="nav-link">Departments</a></li>
+                    <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section bg-primary text-white py-5">
+        <div class="container d-flex align-items-center">
+            <!-- Content on the left -->
+            <div class="hero-content mr-5">
+                <h1>Efficient Hospital Information System</h1>
+                <p>Optimizing hospital management with automated scheduling, patient data management, and department coordination tools.</p>
+                <a href="#features" class="btn btn-light">Explore Features</a>
+            </div>
+            <!-- Image on the right -->
+            <div class="hero-image">
+                <img src="img/doctor.png" alt="Doctor" class="img-fluid">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-5">
+        <div class="container text-center">
+            <h2>Our Key Features</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <a href="features/appointment-scheduling.html" class="text-decoration-none">
+                        <div class="feature-card p-4">
+                            <i class="fas fa-calendar-check fa-3x mb-3"></i>
+                            <h3>Appointment Scheduling</h3>
+                            <p>Efficient management of patient appointments and doctor schedules.</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="features/patient-management.html" class="text-decoration-none">
+                        <div class="feature-card p-4">
+                            <i class="fas fa-user-md fa-3x mb-3"></i>
+                            <h3>Patient Management</h3>
+                            <p>Centralized patient records, medical histories, and real-time data access for healthcare providers.</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="features/ehr.html" class="text-decoration-none">
+                        <div class="feature-card p-4">
+                            <i class="fas fa-procedures fa-3x mb-3"></i>
+                            <h3>Electronic Health Records (EHR)</h3>
+                            <p>Manage patient health data digitally for quicker access and improved care coordination.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hospital Management Section -->
+    <section id="hospital-management" class="py-5">
+        <div class="container text-center">
+            <h2>Hospital Management</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <a href="features/doctors.html" class="text-decoration-none">
+                        <div class="feature-card p-4">
+                            <i class="fas fa-hospital fa-3x mb-3"></i>
+                            <h3>Doctors Management</h3>
+                            <p>Streamline hospital operations including bed management, facility booking, and resource allocation.</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="features/room-allocation.html" class="text-decoration-none">
+                        <div class="feature-card p-4">
+                            <i class="fas fa-bed fa-3x mb-3"></i>
+                            <h3>Room Allocation</h3>
+                            <p>Real-time room allocation and patient bed management with automated notifications.</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="medical-records.html" class="text-decoration-none">
+                        <div class="feature-card p-4">
+                            <i class="fas fa-file-medical-alt fa-3x mb-3"></i>
+                            <h3>Medical Records</h3>
+                            <p>Complete medical record management for all patients with quick search and update options.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Financial Management Section -->
+    <section id="financial-management" class="py-5">
+        <div class="container text-center">
+            <h2>Financial Management</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <a href="billing-payment.html" class="text-decoration-none">
+                        <div class="feature-card p-4">
+                            <i class="fas fa-dollar-sign fa-3x mb-3"></i>
+                            <h3>Billing & Payment</h3>
+                            <p>Manage patient billing, payments, and insurance claims easily.</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <a href="financial-reporting.html" class="text-decoration-none">
+                        <div class="feature-card p-4">
+                            <i class="fas fa-chart-line fa-3x mb-3"></i>
+                            <h3>Financial Reporting</h3>
+                            <p>Generate detailed financial reports for hospital performance and budget management.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Departments Section -->
+    <section id="departments" class="py-5">
+        <div class="container text-center">
+            <h2>Our Hospital Departments</h2>
+            <div class="row">
+                <div class="col-md-3">
+                    <a href="emergency.html" class="text-decoration-none">
+                        <div class="department-card p-4">
+                            <h3>Emergency</h3>
+                            <p>24/7 emergency services equipped with the latest medical technologies.</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="cardiology.html" class="text-decoration-none">
+                        <div class="department-card p-4">
+                            <h3>Cardiology</h3>
+                            <p>Comprehensive cardiovascular care and diagnostic services.</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="pediatrics.html" class="text-decoration-none">
+                        <div class="department-card p-4">
+                            <h3>Pediatrics</h3>
+                            <p>Expert care for children with personalized treatment plans.</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="radiology.html" class="text-decoration-none">
+                        <div class="department-card p-4">
+                            <h3>Radiology</h3>
+                            <p>Advanced diagnostic imaging and radiology services for precise results.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-5 pb-4">
+        <div class="container">
+            <div class="row">
+                <!-- Logo and Social Icons -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <h2 class="footer-logo mb-3">HospitalPlus</h2>
+                    <p>Advanced solutions for efficient hospital management. Focused on improving healthcare services through technology.</p>
+                    <div class="d-flex gap-3 mt-3">
+                        <a href="#" class="text-light"><i class="fab fa-facebook-f fa-lg"></i></a>
+                        <a href="#" class="text-light"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="text-light"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="text-light"><i class="fab fa-linkedin-in fa-lg"></i></a>
+                    </div>
+                </div>
+    
+                <!-- Services -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <h5 class="text-uppercase mb-3">Features</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="appointment-scheduling.html" class="text-light text-decoration-none">Appointment Scheduling</a></li>
+                        <li><a href="patient-management.html" class="text-light text-decoration-none">Patient Management</a></li>
+                        <li><a href="ehr.html" class="text-light text-decoration-none">Electronic Health Records (EHR)</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Contact Information -->
+                <div class="col-lg-4 col-md-12">
+                    <h5 class="text-uppercase mb-3">Contact Us</h5>
+                    <p class="mb-2"><i class="fas fa-phone-alt me-2"></i> <a href="tel:(123)555-4567" class="text-light text-decoration-none">(123) 555-4567</a></p>
+                    <p class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> <a href="#" class="text-light text-decoration-none">Jl. Sehat No.12, Kota Bahagia</a></p>
+                    <p><i class="fas fa-envelope me-2"></i> <a href="mailto:hospitalplus@gmail.com" class="text-light text-decoration-none">hospitalplus@gmail.com</a></p>
+                </div>
+            </div>
+            <hr class="border-light">
+            <div class="text-center">
+                &copy; 2024 HospitalPlus | All Rights Reserved | <a href="#" class="text-light text-decoration-none">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>       
+
+    <!-- Add Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

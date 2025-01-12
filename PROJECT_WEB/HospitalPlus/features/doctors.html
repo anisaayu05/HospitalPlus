@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Management - HospitalPlus</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <header class="bg-dark text-white py-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="logo">
+                <h1>HospitalPlus</h1>
+            </div>
+        </div>
+    </header>
+
+    <section id="doctor-management" class="py-5">
+        <div class="container">
+            <h2 class="text-center">Doctor Management</h2>
+
+            <!-- Form untuk Create dan Update Doctor -->
+            <form id="doctor-form" method="POST">
+                <input type="hidden" id="doctor-id">
+                <div class="form-group">
+                    <label for="doctor-name">Doctor Name</label>
+                    <input type="text" class="form-control" id="doctor-name" placeholder="Enter Doctor Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="doctor-specialization">Specialization</label>
+                    <input type="text" class="form-control" id="doctor-specialization" placeholder="Enter Specialization" required>
+                </div>
+                <div class="form-group">
+                    <label for="doctor-phone">Phone</label>
+                    <input type="text" class="form-control" id="doctor-phone" placeholder="Enter Phone (Optional)">
+                </div>
+                <div class="form-group">
+                    <label for="doctor-email">Email</label>
+                    <input type="email" class="form-control" id="doctor-email" placeholder="Enter Email" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Save Doctor</button>
+            </form>
+
+            <!-- Daftar Doctors -->
+            <h3 class="mt-5">Doctor List</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Specialization</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="doctor-list">
+                    <!-- Data doctors akan ditampilkan di sini -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-white pt-5 pb-4">
+        <div class="container text-center">
+            &copy; 2024 HospitalPlus | All Rights Reserved
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        let doctors = []; // Data doctors dalam memori (untuk demo)
+
+        // Fungsi untuk menampilkan daftar doctors
+        function renderDoctors() {
+            const list = document.getElementById('doctor-list');
+            list.innerHTML = '';
+            doctors.forEach((doctor, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${doctor.name}</td>
+                    <td>${doctor.specialization}</td>
+                    <td>${doctor.phone || 'No Phone'}</td>
+                    <td>${doctor.email}</td>
+                    <td>
+                        <button class="btn btn-warning" onclick="editDoctor(${index})">Edit</button>
+                        <button class="btn btn-danger" onclick="deleteDoctor(${index})">Delete</button>
+                    </td>
+                `;
+                list.appendChild(row);
+            });
+        }
+
+        // Fungsi untuk menambah atau memperbarui doctor
+        function createDoctor(event) {
+            event.preventDefault();
+            const name = document.getElementById('doctor-name').value;
+            const specialization = document.getElementById('doctor-specialization').value;
+            const phone = document.getElementById('doctor-phone').value;
+            const email = document.getElementById('doctor-email').value;
+
+            const doctorId = document.getElementById('doctor-id').value;
+            if (doctorId) {
+                doctors[doctorId] = { name, specialization, phone, email };
+            } else {
+                doctors.push({ name, specialization, phone, email });
+            }
+            renderDoctors();
+            resetForm();
+        }
+
+        // Fungsi untuk mengedit doctor
+        function editDoctor(index) {
+            const doctor = doctors[index];
+            document.getElementById('doctor-name').value = doctor.name;
+            document.getElementById('doctor-specialization').value = doctor.specialization;
+            document.getElementById('doctor-phone').value = doctor.phone;
+            document.getElementById('doctor-email').value = doctor.email;
+            document.getElementById('doctor-id').value = index;
+        }
+
+        // Fungsi untuk menghapus doctor
+        function deleteDoctor(index) {
+            doctors.splice(index, 1);
+            renderDoctors();
+        }
+
+        // Fungsi untuk mereset form
+        function resetForm() {
+            document.getElementById('doctor-form').reset();
+            document.getElementById('doctor-id').value = '';
+        }
+
+        // Menangani form submission
+        document.getElementById('doctor-form').addEventListener('submit', createDoctor);
+
+        // Render daftar doctor awal
+        renderDoctors();
+    </script>
+</body>
+</html>

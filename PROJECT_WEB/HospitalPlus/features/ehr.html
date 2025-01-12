@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electronic Health Records (EHR) - HospitalPlus</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <header class="bg-dark text-white py-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="logo">
+                <h1>HospitalPlus</h1>
+            </div>
+        </div>
+    </header>
+
+    <section id="ehr-management" class="py-5">
+        <div class="container">
+            <h2 class="text-center">Electronic Health Records</h2>
+
+            <form id="ehr-form" method="POST">
+                <input type="hidden" id="ehr-id">
+                <div class="form-group">
+                    <label for="patient-name">Patient Name</label>
+                    <input type="text" class="form-control" id="patient-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="diagnosis">Diagnosis</label>
+                    <textarea class="form-control" id="diagnosis" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="medication">Medication</label>
+                    <input type="text" class="form-control" id="medication" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Save Record</button>
+            </form>
+
+            <h3 class="mt-5">Patient Medical Records</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Patient Name</th>
+                        <th>Diagnosis</th>
+                        <th>Medication</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="ehr-list">
+                    <!-- Data EHR akan ditampilkan di sini -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-white pt-5 pb-4">
+        <div class="container text-center">
+            &copy; 2024 HospitalPlus | All Rights Reserved
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        let ehrRecords = [];  // Data EHR dalam memori (untuk demo)
+
+        // Fungsi untuk menampilkan daftar catatan medis
+        function renderEHR() {
+            const list = document.getElementById('ehr-list');
+            list.innerHTML = '';
+            ehrRecords.forEach((record, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${record.patientName}</td>
+                    <td>${record.diagnosis}</td>
+                    <td>${record.medication}</td>
+                    <td>
+                        <button class="btn btn-warning" onclick="editEHR(${index})">Edit</button>
+                        <button class="btn btn-danger" onclick="deleteEHR(${index})">Delete</button>
+                    </td>
+                `;
+                list.appendChild(row);
+            });
+        }
+
+        // Fungsi untuk menambah catatan medis
+        function createEHR(event) {
+            event.preventDefault();
+            const patientName = document.getElementById('patient-name').value;
+            const diagnosis = document.getElementById('diagnosis').value;
+            const medication = document.getElementById('medication').value;
+
+            const ehrId = document.getElementById('ehr-id').value;
+            if (ehrId) {
+                ehrRecords[ehrId] = { patientName, diagnosis, medication };
+            } else {
+                ehrRecords.push({ patientName, diagnosis, medication });
+            }
+            renderEHR();
+            resetForm();
+        }
+
+        // Fungsi untuk mengedit catatan medis
+        function editEHR(index) {
+            const record = ehrRecords[index];
+            document.getElementById('patient-name').value = record.patientName;
+            document.getElementById('diagnosis').value = record.diagnosis;
+            document.getElementById('medication').value = record.medication;
+            document.getElementById('ehr-id').value = index;
+        }
+
+        // Fungsi untuk menghapus catatan medis
+        function deleteEHR(index) {
+            ehrRecords.splice(index, 1);
+            renderEHR();
+        }
+
+        // Fungsi untuk mereset form
+        function resetForm() {
+            document.getElementById('ehr-form').reset();
+            document.getElementById('ehr-id').value = '';
+        }
+
+        // Menangani form submission
+        document.getElementById('ehr-form').addEventListener('submit', createEHR);
+
+        // Render daftar catatan medis awal
+        renderEHR();
+    </script>
+</body>
+</html>
