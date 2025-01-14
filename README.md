@@ -24,7 +24,7 @@ EHR ini mencakup catatan mengenai hasil laboratorium, vaksinasi, serta diagnosis
 Fitur ini menyediakan manajemen ruang rumah sakit secara real-time, memudahkan pengelolaan alokasi ruang dan fasilitas rumah sakit.
 Informasi terkait status ruang rumah sakit, kapasitas ruang yang tersedia, dan ruang khusus seperti ruang rawat inap dan ruang UGD dapat diakses dengan mudah, memastikan efisiensi alokasi ruang bagi pasien.
 
-### 📝 ** Medical Records**
+### 📝 **Medical Records**
 Fitur ini memungkinkan dokter dan staf medis untuk mencatat dan memperbarui diagnosis serta pengobatan pasien secara terstruktur.
 Data medical records membantu dalam memonitor perkembangan pasien dan memastikan informasi medis terkini tersedia untuk tindakan lanjutan.
 
