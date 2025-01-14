@@ -4,30 +4,29 @@
 
 ## Fitur Utama
 
-### 🩺 **Manajemen Janji Temu**
-- Mengelola penjadwalan janji temu antara pasien dan dokter.
-- Fitur ini mendukung CRUD (Create, Read, Update, Delete) untuk mengelola data janji temu.
-- Notifikasi otomatis untuk pasien dan dokter terkait jadwal yang telah diatur.
+### 🩺 **Appointment Scheduling**
+Sistem ini memungkinkan pengelolaan penjadwalan janji temu antara pasien dan dokter.
+Fitur ini mencakup pengaturan tanggal, waktu, status, dan catatan terkait janji temu.
+Sistem ini memastikan jadwal yang telah diatur untuk pasien dan dokter tidak ada yang terlewat.
 
-### 👩‍⚕️ **Manajemen Dokter**
-- Menyimpan dan mengelola informasi dokter: nama, spesialisasi, kontak, dan email.
-- Pengelolaan jadwal dokter untuk memudahkan pengaturan dan akses informasi.
+### 👩‍⚕️ **Doctor Management**
+Sistem ini dapat menyimpan dan mengelola informasi lengkap mengenai dokter, termasuk nama, spesialisasi, nomor telepon, dan alamat email.
+Pengelolaan dokter ini mempermudah akses informasi terkait nama dan spesialisasi dari dokter yang ada di rumah sakit.
 
-### 🏥 **Manajemen Pasien**
-- Pengelolaan data pasien secara lengkap, termasuk nama, tanggal lahir, alamat, kontak, dan email.
-- Penyimpanan riwayat medis serta catatan pemeriksaan laboratorium setiap pasien.
+### 🏥 **Patient Management**
+Sistem ini memungkinkan pendataan lengkap mengenai pasien, termasuk nama, tanggal lahir, jenis kelamin, alamat, nomor telepon, dan email.
 
-### 💉 **Catatan Kesehatan Elektronik (EHR)**
-- Menyimpan dan mengelola riwayat medis pasien dalam format digital.
-- Catatan mengenai hasil laboratorium, vaksinasi, serta diagnosis dan pengobatan yang diterima oleh pasien.
+### 💉 **Electronic Health Records (EHR)**
+Sistem ini mendigitalisasi catatan medis pasien, memungkinkan penyimpanan riwayat medis pasien secara lengkap dalam format yang mudah diakses.
+EHR ini mencakup catatan mengenai hasil laboratorium, vaksinasi, serta diagnosis dan pengobatan yang diterima oleh pasien, memudahkan koordinasi antar dokter dan staf medis.
 
-### 🛏 **Manajemen Ruang Rumah Sakit**
-- Menyediakan manajemen ruang rumah sakit secara real-time.
-- Menampilkan status ruang rumah sakit dan kapasitas ruang yang tersedia, seperti ruang rawat inap dan ruang UGD.
+### 🛏 **Hospital Room Management**
+Fitur ini menyediakan manajemen ruang rumah sakit secara real-time, memudahkan pengelolaan alokasi ruang dan fasilitas rumah sakit.
+Informasi terkait status ruang rumah sakit, kapasitas ruang yang tersedia, dan ruang khusus seperti ruang rawat inap dan ruang UGD dapat diakses dengan mudah, memastikan efisiensi alokasi ruang bagi pasien.
 
-### 📝 **Catatan Medis**
-- Fitur untuk mengakses, memperbarui, dan memelihara catatan medis pasien oleh dokter dan staf medis.
-- Tersedia pencarian untuk memudahkan akses catatan medis pasien.
+### 📝 ** Medical Records**
+Fitur ini memungkinkan dokter dan staf medis untuk mencatat dan memperbarui diagnosis serta pengobatan pasien secara terstruktur.
+Data medical records membantu dalam memonitor perkembangan pasien dan memastikan informasi medis terkini tersedia untuk tindakan lanjutan.
 
 ## Tampilan Website
 
