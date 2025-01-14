@@ -23,21 +23,13 @@ a:hover {
   color: #535bf2;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
   display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  height: 1%; /* Pastikan body mengambil seluruh tinggi layar */
+  flex-direction: column; /* Pastikan elemen vertikal ditata dengan benar */
 }
 
 h1 {
@@ -69,10 +61,16 @@ button:focus-visible {
 }
 
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  width: 100%; /* Ubah max-width menjadi width 100% */
+  height: 100%; /* Tambahkan tinggi penuh */
+  margin: 0; /* Hilangkan margin untuk tengah horizontal */
+  padding: 0; /* Sesuaikan padding jika diperlukan */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Anda bisa ubah menjadi center jika ingin konten ditengah vertikal */
+  align-items: stretch; /* Pastikan elemen anak memenuhi lebar */
   text-align: center;
+  box-sizing: border-box; /* Pastikan padding dihitung dalam ukuran elemen */
 }
 
 @media (prefers-color-scheme: light) {

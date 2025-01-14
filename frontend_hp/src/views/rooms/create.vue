@@ -1,62 +1,139 @@
 <template>
-  <div class="container">
-    <h2>Create Room</h2>
-    <form @submit.prevent="submitForm">
+  <div class="container mt-5">
+    <h2 class="text-center">Room Allocation</h2>
+
+    <form @submit.prevent="saveRoom">
       <div class="form-group">
         <label for="room-name">Room Name</label>
-        <input type="text" v-model="name" class="form-control" id="room-name" placeholder="Enter Room Name" required>
+        <input
+          type="text"
+          id="room-name"
+          v-model="room.name"
+          class="form-control"
+          placeholder="Enter Room Name"
+          required
+        />
       </div>
+
       <div class="form-group">
         <label for="room-type">Room Type</label>
-        <select v-model="type" class="form-control" id="room-type" required>
+        <select
+          id="room-type"
+          v-model="room.type"
+          class="form-control"
+          required
+        >
           <option value="ICU">ICU</option>
           <option value="Operation Theatre">Operation Theatre</option>
           <option value="General Ward">General Ward</option>
         </select>
       </div>
+
       <div class="form-group">
         <label for="room-capacity">Capacity</label>
-        <input type="number" v-model="capacity" class="form-control" id="room-capacity" placeholder="Enter Capacity" required>
+        <input
+          type="number"
+          id="room-capacity"
+          v-model="room.capacity"
+          class="form-control"
+          placeholder="Enter Capacity"
+          required
+        />
       </div>
+
       <div class="form-group">
         <label for="room-status">Status</label>
-        <select v-model="status" class="form-control" id="room-status" required>
+        <select
+          id="room-status"
+          v-model="room.status"
+          class="form-control"
+          required
+        >
           <option value="available">Available</option>
           <option value="occupied">Occupied</option>
           <option value="maintenance">Maintenance</option>
         </select>
       </div>
+
       <div class="form-group">
         <label for="room-notes">Notes</label>
-        <textarea v-model="notes" class="form-control" id="room-notes" rows="3" placeholder="Enter any additional notes (optional)"></textarea>
+        <textarea
+          id="room-notes"
+          v-model="room.notes"
+          class="form-control"
+          rows="3"
+          placeholder="Enter any additional notes (optional)"
+        ></textarea>
       </div>
-      <button type="submit" class="btn btn-primary">Save Room</button>
+
+      <button type="submit" class="btn btn-primary btn-block">Save Room</button>
     </form>
   </div>
 </template>
 
-<script setup>
-import { ref } from 'vue';
-import api from '../../api';
+<script>
+import api from "../../api"; // Pastikan path API sesuai
 
-const name = ref('');
-const type = ref('');
-const capacity = ref('');
-const status = ref('');
-const notes = ref('');
+export default {
+  data() {
+    return {
+      room: {
+        name: "",
+        type: "",
+        capacity: "",
+        status: "available",
+        notes: "",
+      },
+      errors: {},
+    };
+  },
+  methods: {
+    async saveRoom() {
+      try {
+        const response = await api.post("/api/rooms", this.room);
 
-const submitForm = async () => {
-  try {
-    await api.rooms('api/rooms', {
-      name: name.value,
-      type: type.value,
-      capacity: capacity.value,
-      status: status.value,
-      notes: notes.value,
-    });
-    window.location.href = '/rooms';
-  } catch (error) {
-    console.error('Error adding room:', error);
-  }
+        // Cek response dan tampilkan alert
+        if (response.data.success) {
+          alert("Room has been saved!");
+          this.resetForm();
+          this.$router.push("/rooms"); // Redirect ke halaman rooms
+        } else {
+          alert("Failed to save room.");
+        }
+      } catch (error) {
+        console.error("Error saving room:", error);
+        this.errors = error.response?.data?.errors || {};
+        alert("Failed to save room.");
+      }
+    },
+    resetForm() {
+      this.room = {
+        name: "",
+        type: "",
+        capacity: "",
+        status: "available",
+        notes: "",
+      };
+      this.errors = {}; // Reset errors
+    },
+  },
 };
 </script>
+
+<style>
+.container {
+  max-width: 600px;
+  background-color: #1c1c1c;
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+label {
+  font-weight: bold;
+}
+button {
+  background-color: #007bff;
+  color: white;
+}
+</style>
