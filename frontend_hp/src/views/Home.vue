@@ -157,7 +157,7 @@
                     </a>
                 </li>
                 <li style="margin: 0.5rem 0;">
-                    <a href="/ehr" style="color: #9CA3AF; text-decoration: none;">
+                    <a href="/health-records" style="color: #9CA3AF; text-decoration: none;">
                         Electronic Health Records (EHR)
                     </a>
                 </li>
@@ -227,7 +227,7 @@ export default {
           description:
             "Manage patient health data digitally for quicker access and improved care coordination.",
           icon: "fas fa-procedures",
-          link: "/ehr",
+          link: "/health-records",
         },
       ],
       hospitalManagement: [
@@ -250,7 +250,7 @@ export default {
           description:
             "Complete medical record management for all patients with quick search and update options.",
           icon: "fas fa-file-medical-alt",
-          link: "/medical-records",
+          link: "/medicals",
         },
       ],
       financialManagement: [

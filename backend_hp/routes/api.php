@@ -1,26 +1,26 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\DepartmentController;
-use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\HealthController;
+use App\Http\Controllers\Api\MedicalController;
 use App\Http\Controllers\Api\DoctorController;
 use App\Http\Controllers\Api\PatientController;
 use App\Http\Controllers\Api\AppointmentController;
 use App\Http\Controllers\Api\RoomController;
 
-// Rute untuk Department
-Route::get('/departments', [DepartmentController::class, 'index']); // Mengambil semua departemen
-Route::post('/departments', [DepartmentController::class, 'store']); // Menyimpan departemen baru
-Route::get('/departments/{id}', [DepartmentController::class, 'show']); // Mengambil departemen berdasarkan ID
-Route::put('/departments/{id}', [DepartmentController::class, 'update']); // Memperbarui departemen berdasarkan ID
-Route::delete('/departments/{id}', [DepartmentController::class, 'destroy']); // Menghapus departemen berdasarkan ID
+// Rute untuk HealthRecord
+Route::get('/health-records', [HealthController::class, 'index']); // Mengambil semua Health Records
+Route::post('/health-records', [HealthController::class, 'store']); // Menyimpan Health Record baru
+Route::get('/health-records/{id}', [HealthController::class, 'show']); // Mengambil Health Record berdasarkan ID
+Route::put('/health-records/{id}', [HealthController::class, 'update']); // Memperbarui Health Record berdasarkan ID
+Route::delete('/health-records/{id}', [HealthController::class, 'destroy']); // Menghapus Health Record berdasarkan ID
 
-// Rute untuk Category
-Route::get('/categories', [CategoryController::class, 'index']); // Mengambil semua kategori
-Route::post('/categories', [CategoryController::class, 'store']); // Menyimpan kategori baru
-Route::get('/categories/{id}', [CategoryController::class, 'show']); // Mengambil kategori berdasarkan ID
-Route::put('/categories/{id}', [CategoryController::class, 'update']); // Memperbarui kategori berdasarkan ID
-Route::delete('/categories/{id}', [CategoryController::class, 'destroy']); // Menghapus kategori berdasarkan ID
+// Rute untuk Medical
+Route::get('/medicals', [MedicalController::class, 'index']); // Mengambil semua Medical record
+Route::post('/medicals', [MedicalController::class, 'store']); // Menyimpan Medical record baru
+Route::get('/medicals/{id}', [MedicalController::class, 'show']); // Mengambil Medical record berdasarkan ID
+Route::put('/medicals/{id}', [MedicalController::class, 'update']); // Memperbarui Medical record berdasarkan ID
+Route::delete('/medicals/{id}', [MedicalController::class, 'destroy']); // Menghapus Medical record berdasarkan ID
 
 // Rute untuk Doctor
 Route::get('/doctors', [DoctorController::class, 'index']); // Mengambil semua dokter

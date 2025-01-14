@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Category;
+use App\Models\HealthRecord;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class CategoryController extends Controller
+class HealthController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $categories = Category::all();
+        $healthRecords = HealthRecord::with('patient')->get();
 
         return response()->json([
             'success' => true,
-            'data' => $categories,
+            'data' => $healthRecords,
         ]);
     }
 
@@ -27,15 +27,17 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
+            'patient_id' => 'required|exists:patients,id',
+            'medical_history' => 'required|string',
+            'lab_results' => 'required|string',
+            'vaccination' => 'nullable|string',
         ]);
 
-        $category = Category::create($validatedData);
+        $healthRecord = HealthRecord::create($validatedData);
 
         return response()->json([
             'success' => true,
-            'data' => $category,
+            'data' => $healthRecord,
         ], 201);
     }
 
@@ -44,18 +46,18 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $category = Category::find($id);
+        $healthRecord = HealthRecord::with('patient')->find($id);
 
-        if (!$category) {
+        if (!$healthRecord) {
             return response()->json([
                 'success' => false,
-                'message' => 'Category not found',
+                'message' => 'Health record not found',
             ], 404);
         }
 
         return response()->json([
             'success' => true,
-            'data' => $category,
+            'data' => $healthRecord,
         ]);
     }
 
@@ -64,25 +66,27 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $category = Category::find($id);
+        $healthRecord = HealthRecord::find($id);
 
-        if (!$category) {
+        if (!$healthRecord) {
             return response()->json([
                 'success' => false,
-                'message' => 'Category not found',
+                'message' => 'Health record not found',
             ], 404);
         }
 
         $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
+            'patient_id' => 'required|exists:patients,id',
+            'medical_history' => 'required|string',
+            'lab_results' => 'required|string',
+            'vaccination' => 'nullable|string',
         ]);
 
-        $category->update($validatedData);
+        $healthRecord->update($validatedData);
 
         return response()->json([
             'success' => true,
-            'data' => $category,
+            'data' => $healthRecord,
         ]);
     }
 
@@ -91,20 +95,20 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::find($id);
+        $healthRecord = HealthRecord::find($id);
 
-        if (!$category) {
+        if (!$healthRecord) {
             return response()->json([
                 'success' => false,
-                'message' => 'Category not found',
+                'message' => 'Health record not found',
             ], 404);
         }
 
-        $category->delete();
+        $healthRecord->delete();
 
         return response()->json([
             'success' => true,
-            'message' => 'Category deleted successfully',
+            'message' => 'Health record deleted successfully',
         ]);
     }
 }

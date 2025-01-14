@@ -6,10 +6,10 @@ import api from '../../api';
 // State untuk form
 const patient_id = ref('');
 const medical_history = ref('');
-const lab_results = ref('');
-const vaccination_status = ref('');
 const diagnosis = ref('');
-const treatment = ref('');
+const medical_procedures = ref('');
+const medications = ref('');
+const allergies = ref('');
 const notes = ref('');
 const errors = ref({}); // Untuk menyimpan error dari API
 
@@ -20,23 +20,23 @@ const route = useRoute();
 const router = useRouter();
 const recordId = route.params.id;
 
-// Fungsi untuk mengambil data EHR berdasarkan ID
-const fetchEHR = async () => {
+// Fungsi untuk mengambil data medical record berdasarkan ID
+const fetchMedicalRecord = async () => {
   try {
-    const response = await api.get(`/api/ehrs/${recordId}`);
-    const ehr = response.data.data;
+    const response = await api.get(`/api/health-records/${recordId}`);
+    const record = response.data.data;
 
     // Assign data dari API ke variabel reaktif
-    patient_id.value = ehr.patient_id;
-    medical_history.value = ehr.medical_history;
-    lab_results.value = ehr.lab_results;
-    vaccination_status.value = ehr.vaccination_status;
-    diagnosis.value = ehr.diagnosis;
-    treatment.value = ehr.treatment;
-    notes.value = ehr.notes;
+    patient_id.value = record.patient_id;
+    medical_history.value = record.medical_history;
+    diagnosis.value = record.diagnosis;
+    medical_procedures.value = record.medical_procedures;
+    medications.value = record.medications;
+    allergies.value = record.allergies;
+    notes.value = record.notes;
   } catch (error) {
-    console.error('Error fetching EHR:', error);
-    alert('Failed to fetch EHR data.');
+    console.error('Error fetching medical record:', error);
+    alert('Failed to fetch medical record data.');
   }
 };
 
@@ -54,42 +54,43 @@ const fetchPatients = async () => {
 // Fungsi untuk submit form
 const submitForm = async () => {
   try {
-    await api.put(`/api/ehrs/${recordId}`, {
+    await api.put(`/api/health-records/${recordId}`, {
       patient_id: patient_id.value,
       medical_history: medical_history.value,
-      lab_results: lab_results.value,
-      vaccination_status: vaccination_status.value,
       diagnosis: diagnosis.value,
-      treatment: treatment.value,
+      medical_procedures: medical_procedures.value,
+      medications: medications.value,
+      allergies: allergies.value,
       notes: notes.value,
     });
 
-    alert('EHR updated successfully!');
-    router.push('/ehrs'); // Redirect menggunakan Vue Router
+    alert('Medical record updated successfully!');
+    router.push('/health-records'); // Redirect menggunakan Vue Router
   } catch (error) {
-    console.error('Error updating EHR:', error);
+    console.error('Error updating medical record:', error);
 
     // Tampilkan error dari API (jika ada)
     if (error.response && error.response.data && error.response.data.errors) {
       errors.value = error.response.data.errors;
     } else {
-      alert('Failed to update EHR.');
+      alert('Failed to update medical record.');
     }
   }
 };
 
-// Mengambil data EHR saat komponen dimuat
+// Mengambil data medical record saat komponen dimuat
 onMounted(() => {
-  fetchEHR();
+  fetchMedicalRecord();
   fetchPatients();
 });
 </script>
 
 <template>
   <div class="container mt-5">
-    <h2 class="text-center">Edit EHR</h2>
+    <h2 class="text-center">Edit Health Record</h2>
 
     <form @submit.prevent="submitForm">
+      <!-- Patient Selection -->
       <div class="form-group">
         <label for="patient_id">Patient</label>
         <select id="patient_id" v-model="patient_id" class="form-control" required>
@@ -101,6 +102,7 @@ onMounted(() => {
         <small v-if="errors.patient_id" class="text-danger">{{ errors.patient_id[0] }}</small>
       </div>
 
+      <!-- Medical History -->
       <div class="form-group">
         <label for="medical_history">Medical History</label>
         <textarea
@@ -113,30 +115,7 @@ onMounted(() => {
         <small v-if="errors.medical_history" class="text-danger">{{ errors.medical_history[0] }}</small>
       </div>
 
-      <div class="form-group">
-        <label for="lab_results">Lab Results</label>
-        <textarea
-          id="lab_results"
-          v-model="lab_results"
-          class="form-control"
-          rows="3"
-          placeholder="Enter lab results"
-        ></textarea>
-        <small v-if="errors.lab_results" class="text-danger">{{ errors.lab_results[0] }}</small>
-      </div>
-
-      <div class="form-group">
-        <label for="vaccination_status">Vaccination Status</label>
-        <input
-          type="text"
-          id="vaccination_status"
-          v-model="vaccination_status"
-          class="form-control"
-          placeholder="Enter vaccination status"
-        />
-        <small v-if="errors.vaccination_status" class="text-danger">{{ errors.vaccination_status[0] }}</small>
-      </div>
-
+      <!-- Diagnosis -->
       <div class="form-group">
         <label for="diagnosis">Diagnosis</label>
         <textarea
@@ -149,18 +128,46 @@ onMounted(() => {
         <small v-if="errors.diagnosis" class="text-danger">{{ errors.diagnosis[0] }}</small>
       </div>
 
+      <!-- Medical Procedures -->
       <div class="form-group">
-        <label for="treatment">Treatment</label>
+        <label for="medical_procedures">Medical Procedures</label>
         <textarea
-          id="treatment"
-          v-model="treatment"
+          id="medical_procedures"
+          v-model="medical_procedures"
           class="form-control"
           rows="3"
-          placeholder="Enter treatment details"
+          placeholder="Enter medical procedures"
         ></textarea>
-        <small v-if="errors.treatment" class="text-danger">{{ errors.treatment[0] }}</small>
+        <small v-if="errors.medical_procedures" class="text-danger">{{ errors.medical_procedures[0] }}</small>
       </div>
 
+      <!-- Medications -->
+      <div class="form-group">
+        <label for="medications">Medications</label>
+        <textarea
+          id="medications"
+          v-model="medications"
+          class="form-control"
+          rows="3"
+          placeholder="Enter medications"
+        ></textarea>
+        <small v-if="errors.medications" class="text-danger">{{ errors.medications[0] }}</small>
+      </div>
+
+      <!-- Allergies -->
+      <div class="form-group">
+        <label for="allergies">Allergies</label>
+        <textarea
+          id="allergies"
+          v-model="allergies"
+          class="form-control"
+          rows="3"
+          placeholder="Enter allergies"
+        ></textarea>
+        <small v-if="errors.allergies" class="text-danger">{{ errors.allergies[0] }}</small>
+      </div>
+
+      <!-- Notes -->
       <div class="form-group">
         <label for="notes">Notes</label>
         <textarea
@@ -173,12 +180,13 @@ onMounted(() => {
         <small v-if="errors.notes" class="text-danger">{{ errors.notes[0] }}</small>
       </div>
 
-      <button type="submit" class="btn btn-primary btn-block">Update EHR</button>
+      <!-- Submit Button -->
+      <button type="submit" class="btn btn-primary btn-block">Update Health Record</button>
     </form>
   </div>
 </template>
 
-<style>
+<style scoped>
 .container {
   max-width: 600px;
   background-color: #1c1c1c;

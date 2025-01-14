@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('medicals', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('description')->nullable();
+            $table->foreignId('patient_id')->constrained()->onDelete('cascade'); // Relasi ke tabel patients
+            $table->text('diagnosis')->nullable(); // Diagnosis penyakit
+            $table->text('treatment')->nullable(); // Pengobatan atau tindakan
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('medicals');
     }
 };

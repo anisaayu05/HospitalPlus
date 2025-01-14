@@ -120,7 +120,7 @@
       // Fetch data for medical records
       async fetchMedicalRecords() {
         try {
-          const response = await fetch("http://127.0.0.1:8000/api/medical-records");
+          const response = await fetch("http://127.0.0.1:8000/api/medicals");
           const data = await response.json();
           if (data.success) {
             this.medicalRecordList = data.data;
@@ -151,8 +151,8 @@
       async saveMedicalRecord() {
         const method = this.medicalRecordForm.id ? "PUT" : "POST";
         const url = this.medicalRecordForm.id
-          ? `http://127.0.0.1:8000/api/medical-records/${this.medicalRecordForm.id}`
-          : "http://127.0.0.1:8000/api/medical-records";
+          ? `http://127.0.0.1:8000/api/medicals/${this.medicalRecordForm.id}`
+          : "http://127.0.0.1:8000/api/medicals";
   
         try {
           const response = await fetch(url, {
@@ -191,7 +191,7 @@
         if (confirm("Are you sure you want to delete this medical record?")) {
           try {
             const response = await fetch(
-              `http://127.0.0.1:8000/api/medical-records/${id}`,
+              `http://127.0.0.1:8000/api/medicals/${id}`,
               { method: "DELETE" }
             );
             const result = await response.json();

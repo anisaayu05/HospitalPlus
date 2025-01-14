@@ -6,12 +6,8 @@ export default {
     return {
       record: {
         patient_id: null,
-        medical_history: "",
         diagnosis: "",
-        medical_procedures: "",
-        medications: "",
-        allergies: "",
-        notes: "",
+        treatment: "",
       },
       patients: [], // Daftar pasien dari DB
       errors: {},
@@ -33,12 +29,12 @@ export default {
     },
     async saveMedicalRecord() {
       try {
-        const response = await api.post("/api/medical_records", this.record);
+        const response = await api.post("/api/medicals", this.record);
 
         if (response.data.success) {
           alert("Medical record has been created!");
           this.resetForm();
-          this.$router.push("/medical_records");
+          this.$router.push("/medicals");
         } else {
           alert("Failed to create medical record.");
         }
@@ -51,12 +47,8 @@ export default {
     resetForm() {
       this.record = {
         patient_id: null,
-        medical_history: "",
         diagnosis: "",
-        medical_procedures: "",
-        medications: "",
-        allergies: "",
-        notes: "",
+        treatment: "",
       };
       this.errors = {};
     },
@@ -86,18 +78,6 @@ export default {
       </div>
 
       <div class="form-group">
-        <label for="medical_history">Medical History</label>
-        <textarea
-          id="medical_history"
-          v-model="record.medical_history"
-          class="form-control"
-          rows="3"
-          placeholder="Enter medical history"
-        ></textarea>
-        <small v-if="errors.medical_history" class="text-danger">{{ errors.medical_history[0] }}</small>
-      </div>
-
-      <div class="form-group">
         <label for="diagnosis">Diagnosis</label>
         <textarea
           id="diagnosis"
@@ -110,51 +90,15 @@ export default {
       </div>
 
       <div class="form-group">
-        <label for="medical_procedures">Medical Procedures</label>
+        <label for="treatment">Treatment</label>
         <textarea
-          id="medical_procedures"
-          v-model="record.medical_procedures"
+          id="treatment"
+          v-model="record.treatment"
           class="form-control"
           rows="3"
-          placeholder="Enter medical procedures"
+          placeholder="Enter treatment details"
         ></textarea>
-        <small v-if="errors.medical_procedures" class="text-danger">{{ errors.medical_procedures[0] }}</small>
-      </div>
-
-      <div class="form-group">
-        <label for="medications">Medications</label>
-        <textarea
-          id="medications"
-          v-model="record.medications"
-          class="form-control"
-          rows="3"
-          placeholder="Enter medications"
-        ></textarea>
-        <small v-if="errors.medications" class="text-danger">{{ errors.medications[0] }}</small>
-      </div>
-
-      <div class="form-group">
-        <label for="allergies">Allergies</label>
-        <textarea
-          id="allergies"
-          v-model="record.allergies"
-          class="form-control"
-          rows="3"
-          placeholder="Enter allergies"
-        ></textarea>
-        <small v-if="errors.allergies" class="text-danger">{{ errors.allergies[0] }}</small>
-      </div>
-
-      <div class="form-group">
-        <label for="notes">Notes</label>
-        <textarea
-          id="notes"
-          v-model="record.notes"
-          class="form-control"
-          rows="3"
-          placeholder="Enter additional notes (optional)"
-        ></textarea>
-        <small v-if="errors.notes" class="text-danger">{{ errors.notes[0] }}</small>
+        <small v-if="errors.treatment" class="text-danger">{{ errors.treatment[0] }}</small>
       </div>
 
       <button type="submit" class="btn btn-primary btn-block">Create Medical Record</button>
